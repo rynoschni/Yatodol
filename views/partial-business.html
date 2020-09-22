@@ -1,0 +1,24 @@
+<h1>Welcome to ${data.name}</h1>
+
+<ul>
+    <li>Food Type: ${data.category}</li>
+    <li>Distance: ${data.distance} miles</li>
+    <li>Takeout: ${data.takeout === true ? 'Yes' : 'No'}</li>
+    <li>Rating: ${data.stars}</li>
+    <li>My Favorite Dish: ${data.favorite_dish}</li>
+</ul>
+<form action="/business/${data.slug}" method="POST">
+    <h2>Leave a review!</h2>
+<label>Title
+    <input type="text" name="title"/>
+</label>
+    <label>Review
+<input type="text" name="review" />
+</label>
+<label>Stars
+    <input type="text" name="stars" />
+    </label>
+    <input type="hidden" name="reviewer_id" /> 
+    <input type="hidden" name="restaurant_id" value="${data.id}" />
+<button type="submit">Submit Review</button>
+</form>

@@ -1,0 +1,13 @@
+<div class="content is-large">
+    <h1>${title}</h1>
+    ${data.map(location =>{
+        return `<p>
+                <a class="lglink" href="/business/${location.slug}">${location.name}</a>
+                <ul>
+                    <li>Category: ${location.category}</li>
+                    <li>Star Rating: ${location.stars}</li>
+                </ul>
+        </p>`
+    }).join('')}
+    <img src="/images/voltron.jpeg" alt="NEP Voltron" width="500" height="auto">
+</div>
