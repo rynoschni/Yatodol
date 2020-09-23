@@ -5,18 +5,18 @@ const listModel = require('../models/listModel');
 
 
 router.get('/', async (req, res, next) => {
-    const reviewData = await listModel.getAll();
+    const listData = await listModel.getAll();
     // const statusData = await languageModel.getAllStatus();
     
     return res.render('template', {
         locals: {
             title: 'Yatodol',
-            data: reviewData,
+            data: listData,
             is_logged_in: req.session.is_logged_in,
             // statusData: statusData,
         },
         partials: {
-            partial: 'partial-index'
+            partial: 'partial-login'
         }
         })
     // res.send(200);

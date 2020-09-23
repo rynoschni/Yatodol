@@ -13,7 +13,7 @@ class TaskList {
 
     static async getAll() {
         try {
-            const response = await db.any(`SELECT * FROM task_list;`);
+            const response = await db.any(`SELECT * FROM task_list`);
             return response;
         } catch(error) {
             return error.message;
@@ -31,14 +31,16 @@ class TaskList {
     //     }
     // }
 
-    static async addTask(task, due_date) {
+    static async addTask(task, due_date, user_id) {
         try {
-            const response = await db.result(`INSERT INTO task_list (task, due_date) VALUES ($1, $2);`, [task, due_date]);
+            const response = await db.result(`INSERT INTO task_list (task, due_date, user_id) VALUES ($1, $2, $3);`, [task, due_date, user_id]);
             return response;
         } catch(error){
             console.log("Error:", error);
         }
     }
+
+    static async 
 }
 
 

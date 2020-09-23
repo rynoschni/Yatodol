@@ -1,4 +1,10 @@
 <div class="content is-large">
+    ${!!is_logged_in ? `
+        <a href="/user/logout">Logout</a>
+        ` : `
+        <a href="/login">Login</a>
+        `
+        }
     <h1>${title}</h1>
     ${data.map( list =>{
         return `<p>
@@ -11,5 +17,14 @@
                 </ul>
         </p>`
     }).join('')}
+    <form action="/list" method="POST">
+        <label> Enter Task:
+            <input type="text" name="task" placeholder="Task Description" />
+        </label>
+        <label>Date Due:
+            <input type="date" name="due_date" placeholder="Enter Due Date" />
+        </label>
+        <button type="submit">Add new task</button>
+    </form>
     <img src="/images/voltron.jpeg" alt="NEP Voltron" width="500" height="auto">
 </div>

@@ -69,8 +69,8 @@ router.post('/login', (req, res) =>{
             const { name, user_id } = response;
             req.session.name = name;
             req.session.user_id = user_id;
-            // res.redirect('/')
-            res.send(200);
+            res.redirect('/list')
+            // res.send(200);
         } else {
             // res.redirect('user/signup');
             res.send(404);

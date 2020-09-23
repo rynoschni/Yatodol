@@ -5,32 +5,42 @@ const express = require('express'),
 const listModel = require('../models/listModel');
 
 
-router.get('/:id?', async (req, res) => {
-    const singleData = await listModel.getOne(req.params.id);
-    console.log(singleData)
+router.get('/', async (req, res) => {
+    const listData = await listModel.getAll();
+    console.log(listData)
     // const statusData = await languageModel.getAllStatus();
     
     return res.render('template', {
         locals: {
             title: `Today's list`,
-            data: singleData,
+            data: listData,
             is_logged_in: req.session.is_logged_in,
             // statusData: statusData,
         },
         partials: {
-            partial: 'partial-business'
+            partial: 'partial-list'
         }
         })
 });
 
-router.post('/:id?', async (req, res) =>{
+router.post('/', async (req, res) =>{
     // const reviewer_id = req.session.user_id
     const{task, due_date} = req.body;
     
-    await listModel.addReview(task, due_date);
+    await listModel.addTask(task, due_date, req.session.user_id);
     console.log(req.body);
-    // console.log(req.session.user_id);
-    res.redirect('back');
+    console.log(req.session.user_id);
+    res.redirect('/list');
 });
+
+// router.post('/', async (req, res) =>{
+//     // const reviewer_id = req.session.user_id
+//     const{task, due_date} = req.body;
+    
+//     await listModel.addTask(task, due_date, req.session.user_id);
+//     console.log(req.body);
+//     // console.log(req.session.user_id);
+//     res.redirect('/list');
+// });
 
 module.exports = router;  //last line of all routes
